@@ -219,12 +219,14 @@ def _call_llm(client: anthropic.Anthropic, system: str, user_prompt: str,
             kwargs["messages"] = messages
             response = client.messages.create(**kwargs)
 
-    # Extract text and search result titles
-    response_text = ""
+    # Extract text and search result titles.
+    # With web search + citations, Claude returns multiple text blocks;
+    # concatenate them all so the JSON parser can find the full response.
+    text_parts = []
     search_results_summary = ""
     for block in response.content:
         if block.type == "text":
-            response_text = block.text
+            text_parts.append(block.text)
         elif block.type == "web_search_tool_result":
             titles = []
             for item in (block.content if isinstance(block.content, list) else []):
@@ -233,6 +235,7 @@ def _call_llm(client: anthropic.Anthropic, system: str, user_prompt: str,
             if titles:
                 search_results_summary = "; ".join(titles)
 
+    response_text = "".join(text_parts)
     return response_text, search_results_summary
 
 
