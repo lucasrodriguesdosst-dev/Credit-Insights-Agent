@@ -2,131 +2,789 @@
 CASHFLOW CATEGORY VALIDATION REPORT
 ======================================================================
 Total cashflows analyzed: 190
-Correctly categorized:    18 (9.5%)
-Incorrectly categorized:  17 (8.9%)
-Errors:                   155
+Correctly categorized:    78 (41.1%)
+Incorrectly categorized:  111 (58.4%)
+Errors:                   1
 
 ----------------------------------------------------------------------
 SUGGESTED CORRECTIONS:
 ----------------------------------------------------------------------
 
   labelRoot:  FACTURE CARTE CLOYS PARIS
-  Entity:     CLOYS appears to be a restaurant or food establishment in Paris, likely a casual dining or fast-casual restaurant
+  Entity:     Cloys Paris appears to be a restaurant or food establishment in Paris, likely offering dining services rather than grocery products
   Current:    GROCERY
   Suggested:  LEISURE
   Confidence: MEDIUM
-  Reasoning:  CLOYS is a restaurant/dining establishment in Paris, not a grocery store. Restaurant expenses should be categorized as LEISURE rather than GROCERY, as this represents dining out/entertainment rather than purchasing groceries for home consumption
+  Reasoning:  Based on the name 'Cloys Paris' and the transaction amount, this appears to be a restaurant or dining establishment rather than a grocery store. Restaurant meals should be categorized as LEISURE rather than GROCERY, which is typically reserved for food shopping at supermarkets or grocery stores.
 
   labelRoot:  MOTIF BUDGET BEN GREEN GOT LUCAS RODRIGUES DOS SANTOS REFDO REFBEN
-  Entity:     This appears to be a personal transfer to an individual (Lucas Rodrigues Dos Santos) with budget-related motifs, likely a personal payment or transfer between individuals
+  Entity:     This appears to be a personal transfer or payment to an individual named Lucas Rodrigues dos Santos, possibly rent, personal loan repayment, or other regular personal payment
   Current:    REGULAR_EXPENSE
   Suggested:  OTHER_EXPENSE
   Confidence: MEDIUM
-  Reasoning:  REGULAR_EXPENSE is not a valid category in the Algoan taxonomy. This appears to be a personal transfer to an individual, which doesn't fit specific expense categories like rent, insurance, or utilities. OTHER_EXPENSE is the most appropriate category for miscellaneous personal transfers that don't fit other specific expense categories.
+  Reasoning:  REGULAR_EXPENSE is not a valid category in the Algoan taxonomy. This appears to be a personal transfer to an individual, which doesn't fit specific categories like rent, insurance, etc. OTHER_EXPENSE is the most appropriate catch-all category for miscellaneous personal payments that don't fit other expense categories.
 
-  labelRoot:  FACTURE CARTE CHEZ ALBERT BRU BEL
-  Entity:     ALBERT BRU appears to be a Belgian grocery store or supermarket chain
-  Current:    LEISURE
-  Suggested:  GROCERY
+  labelRoot:  FACTURE CARTE ECOX PARIS
+  Entity:     ECOX PARIS appears to be an eco-friendly car wash or automotive service company based in Paris, likely offering environmentally conscious vehicle cleaning services
+  Current:    SHOPPING
+  Suggested:  TRANSPORT
   Confidence: HIGH
-  Reasoning:  This is a card transaction at Albert Bru, which is a grocery store/supermarket in Belgium. Card transactions at grocery stores should be categorized as GROCERY, not LEISURE. The small amount (-6.6) is consistent with a grocery purchase.
+  Reasoning:  Car wash and automotive services are transportation-related expenses and should be categorized under TRANSPORT, not SHOPPING. The 'ECO' prefix suggests an environmentally friendly car wash service, which is still fundamentally a vehicle maintenance service.
 
   labelRoot:  FACTURE CARTE ETC COFFEE BEL
-  Entity:     ETC Coffee Belgium appears to be a coffee shop or café chain, likely serving coffee, beverages, and light food items
+  Entity:     ETC Coffee Belgium appears to be a coffee shop or café chain in Belgium, likely serving coffee, beverages, and light food items
   Current:    LEISURE
   Suggested:  GROCERY
   Confidence: HIGH
-  Reasoning:  Coffee shops and cafés primarily serve food and beverages for consumption, which falls under GROCERY rather than LEISURE. While coffee shops can have a social/leisure aspect, the primary transaction is for food/beverage purchases, making GROCERY the more appropriate category for this type of establishment.
+  Reasoning:  Coffee shops and cafés that serve food and beverages should be categorized as GROCERY rather than LEISURE. GROCERY covers food and beverage purchases, while LEISURE is more for entertainment activities. A coffee purchase at a café is a food/beverage transaction, making GROCERY the appropriate category.
+
+  labelRoot:  FACTURE CARTE BRASSERIE PLOEG BEL
+  Entity:     BRASSERIE PLOEG appears to be a Belgian brewery/restaurant establishment that serves food and drinks
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  A brasserie is primarily a restaurant/eatery that serves food and meals. According to the taxonomy rules, catering/restaurant companies should be GROCERY or LEISURE depending on context. Given that this is a card transaction at a dining establishment for food consumption, it should be categorized as GROCERY rather than LEISURE, as it represents a food/meal expense rather than entertainment.
 
   labelRoot:  FACTURE CARTE BIOBURGER VICTO PARIS
-  Entity:     Bioburger is a French organic fast food restaurant chain specializing in organic burgers and healthy fast food
+  Entity:     Bioburger is a French organic fast-food burger chain restaurant
   Current:    LEISURE
   Suggested:  GROCERY
   Confidence: HIGH
-  Reasoning:  Bioburger is a restaurant/food establishment. According to the rules, catering/restaurant companies should be GROCERY or LEISURE depending on context. For a fast food restaurant purchase via card transaction, this should be categorized as GROCERY rather than LEISURE, as it represents food consumption rather than entertainment activity.
+  Reasoning:  Bioburger is a restaurant/fast-food chain serving food. According to the rules, catering/restaurant companies should be GROCERY or LEISURE depending on context. For a fast-food restaurant transaction, GROCERY is more appropriate as it represents food purchase rather than entertainment/leisure activity.
 
   labelRoot:  FACTURE CARTE FRITES ATELIER BEL
-  Entity:     FRITES ATELIER appears to be a French fries shop or fast food restaurant specializing in fries ('frites' means fries in French, 'atelier' means workshop/shop)
+  Entity:     FRITES ATELIER appears to be a French fries restaurant/eatery specializing in gourmet or artisanal fries ('atelier' means workshop/studio in French, suggesting a specialized fries shop)
   Current:    LEISURE
   Suggested:  GROCERY
   Confidence: HIGH
-  Reasoning:  This is a card transaction at what appears to be a fast food restaurant/fries shop. Food purchases at restaurants and fast food establishments should be categorized as GROCERY, not LEISURE. LEISURE is more appropriate for entertainment, recreational activities, or non-essential services, while food purchases are essential consumption.
+  Reasoning:  This is a food purchase at a restaurant/eatery. According to the rules, catering/restaurant companies should be GROCERY or LEISURE depending on context. Since this is a card transaction for food at what appears to be a casual dining establishment (fries shop), it should be categorized as GROCERY rather than LEISURE, as it's primarily a food purchase rather than entertainment.
 
   labelRoot:  FACTURE CARTE DAMN GOOD COFFE BEL
-  Entity:     Coffee shop or café that serves coffee and likely light food/beverages
+  Entity:     Coffee shop/café that serves coffee and likely light food items
   Current:    LEISURE
   Suggested:  GROCERY
   Confidence: HIGH
-  Reasoning:  This is a card transaction at a coffee shop for a small amount (-7.8), which represents food/beverage consumption. Coffee shops should be categorized as GROCERY rather than LEISURE, as they provide consumable goods (coffee, food) rather than entertainment services.
+  Reasoning:  This is a card transaction at a coffee shop for coffee/beverages. Coffee purchases should be categorized as GROCERY rather than LEISURE, as they represent food and beverage consumption rather than entertainment or leisure activities.
+
+  labelRoot:  FACTURE CARTE FP MONTMARTRE PARIS
+  Entity:     FP Montmartre appears to be a retail establishment in the Montmartre area of Paris, likely a convenience store, newsstand, or small shop that sells various items including tobacco products
+  Current:    TOBACCO
+  Suggested:  SHOPPING
+  Confidence: MEDIUM
+  Reasoning:  While this establishment may sell tobacco products, 'FP Montmartre' appears to be a general retail store rather than a specialized tobacco shop. The TOBACCO category should be reserved for purchases specifically at tobacco shops or when the transaction clearly indicates tobacco purchases. A €43.50 purchase at a general store in Montmartre is more likely a mixed purchase of various items, making SHOPPING the more appropriate category.
 
   labelRoot:  FACTURE CARTE FRACAS PARIS
-  Entity:     FRACAS appears to be a restaurant or bar in Paris, likely a dining/food establishment
+  Entity:     FRACAS appears to be a restaurant or bar in Paris, likely serving food and drinks
   Current:    OTHER_EXPENSE
   Suggested:  GROCERY
   Confidence: MEDIUM
-  Reasoning:  This is a card transaction at what appears to be a restaurant/food establishment in Paris. Restaurant and food service transactions should be categorized as GROCERY rather than OTHER_EXPENSE, as they represent food and beverage purchases.
+  Reasoning:  This is a card transaction at what appears to be a restaurant/bar in Paris. Restaurant and food service purchases should be categorized as GROCERY rather than OTHER_EXPENSE, as they represent food/beverage consumption.
 
   labelRoot:  FACTURE CARTE DELICES PARIS
-  Entity:     DELICES PARIS appears to be a food establishment, likely a restaurant, café, or food service provider in Paris based on the name 'Delices' (delights/delicacies in French)
+  Entity:     DELICES PARIS appears to be a food establishment, likely a restaurant, café, or food service provider in Paris based on the name 'DELICES' (meaning delicacies/delights in French)
   Current:    LEISURE
   Suggested:  GROCERY
   Confidence: MEDIUM
-  Reasoning:  While DELICES PARIS could be a restaurant (which would justify LEISURE), the relatively small amount (-11.2) and the fact it's a card transaction suggests this is more likely a food purchase rather than a dining experience. Food purchases, even from specialized food shops or delis, should be categorized as GROCERY rather than LEISURE according to the taxonomy guidelines.
+  Reasoning:  While DELICES PARIS could be a restaurant (which would be LEISURE), the transaction type is CARD and the amount suggests a food purchase. Food establishments can be categorized as either GROCERY (for food purchases) or LEISURE (for dining experiences). Given the context of a card transaction at what appears to be a food establishment, GROCERY is more appropriate as it represents food consumption rather than entertainment/leisure activity.
 
   labelRoot:  CPTE A  MOTIF SAVINGS BEN M RODRIGUES DOS SANTOS LUCAS REFDO REFBEN
-  Entity:     This appears to be an internal bank transfer to a savings account for the beneficiary M RODRIGUES DOS SANTOS LUCAS, as indicated by 'CPTE A MOTIF SAVINGS BEN' and 'REFDO REFBEN' (likely reference codes for the beneficiary and transfer)
+  Entity:     Internal bank transfer to a savings account, likely the customer's own savings account based on the personal name and 'SAVINGS' reference
   Current:    OTHER_EXPENSE
   Suggested:  SAVING
   Confidence: HIGH
-  Reasoning:  This is clearly a transfer to a savings account ('MOTIF SAVINGS') which should be categorized as SAVING rather than OTHER_EXPENSE. Internal transfers to savings accounts are specifically covered by the SAVING category in the taxonomy.
+  Reasoning:  This is clearly a transfer to a savings account as indicated by 'SAVINGS' in the label. Money being moved to savings should be categorized as SAVING, not OTHER_EXPENSE, regardless of it being an outgoing transfer
 
   labelRoot:  FACTURE CARTE EURO CYCLES PARIS
-  Entity:     Euro Cycles Paris appears to be a bicycle shop or cycling equipment retailer in Paris, likely selling bikes, bike parts, accessories, or cycling gear
+  Entity:     Euro Cycles appears to be a bicycle shop or cycling equipment retailer in Paris, likely selling bicycles, bike parts, accessories, or cycling gear
   Current:    LEISURE
   Suggested:  SHOPPING
   Confidence: HIGH
-  Reasoning:  While cycling can be a leisure activity, Euro Cycles Paris is a retail store selling physical products (bicycles, equipment, accessories). According to the rules, retail purchases should be categorized as SHOPPING rather than LEISURE. The LEISURE category would be more appropriate for services like gym memberships or activity fees, not product purchases.
+  Reasoning:  While cycling can be a leisure activity, Euro Cycles is a retail store selling physical products (bicycles, equipment, accessories). According to the rules, retail purchases should be categorized as SHOPPING rather than LEISURE, which is more appropriate for services or entertainment activities.
 
   labelRoot:  FACTURE CARTE LHOSTE PERE ET BASSUET
-  Entity:     LHOSTE PERE ET appears to be a French business name, likely a traditional family business (given 'PERE ET' meaning 'father and'). BASSUET could be a location or partner name. Without more specific context, this appears to be a local merchant or service provider.
+  Entity:     LHOSTE PERE ET BASSUET appears to be a French wine merchant or alcoholic beverage retailer, likely specializing in wines and spirits
   Current:    LEISURE
-  Suggested:  SHOPPING
-  Confidence: MEDIUM
-  Reasoning:  While this could be a leisure-related business, the generic nature of the business name and the card transaction type suggests it's more likely a general merchant transaction. Without clear indication it's specifically leisure (restaurant, entertainment, etc.), SHOPPING is the more appropriate default category for unidentified merchant card transactions.
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Wine and alcoholic beverage purchases should be categorized as GROCERY rather than LEISURE, as they are consumable goods typically purchased for home consumption. The GROCERY category is more appropriate for food and beverage purchases, including alcohol.
 
   labelRoot:  FACTURE CARTE TOUTELANUTRITIO PARIS
-  Entity:     TOUTELANUTRITIO appears to be a nutrition/dietary supplement company or health food store based in Paris, likely selling nutritional products, supplements, or health-related food items
+  Entity:     TOUTELANUTRITIO appears to be a nutrition/dietary supplement store or health food retailer in Paris, likely selling vitamins, supplements, or health/wellness products
   Current:    OTHER_EXPENSE
   Suggested:  HEALTH
   Confidence: HIGH
-  Reasoning:  This is a card transaction at a nutrition company selling health/dietary products. Nutritional supplements and health-related food purchases should be categorized as HEALTH rather than OTHER_EXPENSE, as they are specifically related to health and wellness products.
+  Reasoning:  A nutrition store selling dietary supplements and health products should be categorized as HEALTH rather than OTHER_EXPENSE, as these are health-related purchases for wellness and nutritional supplementation
 
   labelRoot:  FACTURE CARTE MONGOO VICTOIRE PARIS
-  Entity:     Mongoo appears to be a restaurant or food establishment in Paris, likely offering Asian cuisine based on the name pattern
+  Entity:     Mongoo appears to be a restaurant or food establishment in Paris, likely offering Asian cuisine based on the name
   Current:    SHOPPING
   Suggested:  GROCERY
-  Confidence: HIGH
-  Reasoning:  This is a card transaction at what appears to be a restaurant/food establishment. Restaurant purchases should be categorized as GROCERY rather than SHOPPING, as they represent food consumption rather than retail shopping for goods.
+  Confidence: MEDIUM
+  Reasoning:  This appears to be a restaurant/food establishment rather than a shopping transaction. For food purchases including restaurant meals, GROCERY is the appropriate category rather than SHOPPING, which is typically reserved for retail goods and online shopping platforms.
 
   labelRoot:  FACTURE CARTE LESPACE PARIS
-  Entity:     LESPACE PARIS appears to be a retail store or shopping center in Paris, likely selling various consumer goods or services
+  Entity:     L'Espace Paris appears to be a shopping center, retail space, or commercial complex in Paris where various stores and services are located
   Current:    OTHER_EXPENSE
   Suggested:  SHOPPING
   Confidence: HIGH
-  Reasoning:  This is a card transaction at what appears to be a retail establishment in Paris. Card transactions at retail stores should be categorized as SHOPPING rather than OTHER_EXPENSE, which is a catch-all category that should be avoided when a more specific category fits.
+  Reasoning:  This is a card transaction at what appears to be a shopping center or retail complex in Paris. Since it's a card purchase at a retail location, it should be categorized as SHOPPING rather than OTHER_EXPENSE, which is too generic for retail purchases.
+
+  labelRoot:  FACTURE CARTE DUVALEIX PARIS
+  Entity:     DUVALEIX PARIS appears to be a Parisian business, likely a restaurant, café, or food establishment based on the name pattern and transaction amount
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  A card transaction of -38€ at what appears to be a food establishment in Paris should be categorized as GROCERY rather than LEISURE, as it's more likely a meal/food purchase rather than entertainment
 
   labelRoot:  FACTURE CARTE ANAEVI PARIS
-  Entity:     ANAEVI appears to be a French company that provides meal vouchers (tickets restaurant) and employee benefits services
+  Entity:     ANAEVI appears to be a French healthcare/medical services company, likely providing medical consultations, healthcare services, or medical equipment based in Paris
   Current:    OTHER_EXPENSE
-  Suggested:  GROCERY
+  Suggested:  HEALTH
   Confidence: HIGH
-  Reasoning:  ANAEVI is a meal voucher service provider in France. This card transaction likely represents the purchase/recharge of meal vouchers or payment for employee restaurant benefits, which should be categorized as GROCERY since it's related to food/meal expenses rather than a general other expense
+  Reasoning:  ANAEVI is a healthcare-related entity providing medical services. Card transactions for healthcare services should be categorized as HEALTH rather than OTHER_EXPENSE, as HEALTH is the specific category for medical and healthcare-related expenses in the taxonomy.
 
   labelRoot:  RETRAIT DAB BNP PARIBAS PARIS
-  Entity:     BNP Paribas ATM (Distributeur Automatique de Billets) in Paris - this is a cash withdrawal machine operated by BNP Paribas bank, not a business entity providing goods or services
+  Entity:     BNP Paribas ATM cash withdrawal - this is a bank operation where the customer withdraws cash from their own account at a BNP Paribas ATM
   Current:    OTHER_EXPENSE
   Suggested:  BANK_OPERATION
   Confidence: HIGH
-  Reasoning:  This is a cash withdrawal ('RETRAIT DAB') from a BNP Paribas ATM, not an expense for goods or services. Cash withdrawals should be categorized as bank operations since they represent conversion of bank balance to physical cash, not actual spending. OTHER_EXPENSE is inappropriate for internal bank operations.
+  Reasoning:  ATM cash withdrawals are internal bank operations, not expenses. The money is being converted from account balance to cash - it's a transfer of the customer's own funds, not a purchase or expense. This should be categorized under BANK_OPERATION as it's a banking service operation.
+
+  labelRoot:  FACTURE CARTE DOSE JULES JOFF PARIS
+  Entity:     Dose appears to be a coffee shop or café chain, likely located on Jules Joffrin street in Paris, based on the transaction description
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at what appears to be a coffee shop/café. Food and beverage purchases at cafés, coffee shops, and restaurants should be categorized as GROCERY rather than SHOPPING, as they involve consumable food/drink items rather than retail goods
+
+  labelRoot:  FACTURE CARTE DAS HAPPY PARIS
+  Entity:     DAS HAPPY appears to be a parking service or parking management company in Paris, likely providing parking solutions or related services
+  Current:    LEISURE
+  Suggested:  TRANSPORT
+  Confidence: HIGH
+  Reasoning:  Parking services should be categorized as TRANSPORT rather than LEISURE, as parking is directly related to transportation expenses and vehicle usage, not recreational activities
+
+  labelRoot:  FACTURE CARTE REVOLUT GBR
+  Entity:     Revolut is a digital financial services company that offers business banking services, including business accounts, invoicing, and payment processing services. The 'FACTURE' (French for invoice/bill) indicates this is likely a subscription fee or service charge from Revolut Business for their business banking services.
+  Current:    OTHER_EXPENSE
+  Suggested:  FEES_BANK_SERVICE
+  Confidence: HIGH
+  Reasoning:  This appears to be a recurring charge/invoice from Revolut for their business banking services. Since Revolut is a financial services provider and this is labeled as 'FACTURE' (invoice/bill), it represents bank service fees rather than a general expense. Bank service fees should be categorized as FEES_BANK_SERVICE under the BANK_OPERATION category.
+
+  labelRoot:  FACTURE CARTE FINANCEMT ONEY CROIX
+  Entity:     Oney Bank is a European financial institution specializing in payment services, consumer finance, and credit solutions. Located in Croix, France, it offers split payment solutions (3x 4x payment plans), personal loans, and various financing options for purchases. It's a subsidiary of Groupe BPCE and primarily serves as an intermediary for installment payments and consumer credit.
+  Current:    OTHER_EXPENSE
+  Suggested:  LOAN_REPAYMENT
+  Confidence: HIGH
+  Reasoning:  The transaction label indicates 'FACTURE CARTE FINANCEMT ONEY' which translates to 'CARD FINANCING INVOICE ONEY'. Given that Oney is a financial institution providing consumer credit and split payment services, this outgoing transaction of -245.03 EUR represents a loan repayment or installment payment to Oney Bank for previously obtained financing. This should be categorized as LOAN_REPAYMENT rather than OTHER_EXPENSE, as it's specifically a repayment of credit/financing services.
+
+  labelRoot:  FACTURE CARTE SOBREMESA PARIS
+  Entity:     Sobremesa appears to be a restaurant in Paris - 'sobremesa' is a Spanish/Portuguese term referring to the time spent at the table after a meal, and this is a card transaction at what seems to be a dining establishment
+  Current:    OTHER_EXPENSE
+  Suggested:  LEISURE
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at a restaurant in Paris. Restaurant/dining expenses should be categorized as LEISURE rather than OTHER_EXPENSE, as dining out is considered a leisure activity in the taxonomy
+
+  labelRoot:  INST  MAY REF MOTIF CAGNOTTE SE NE ALGOAN
+  Entity:     May is a French company that provides employee benefits management platform through a unified digital wallet ('cagnotte') system. It's a subsidiary of Groupe Up and allows employees to use a single wallet to access various tax-exempt benefits like meal vouchers, gift cards, vacation vouchers, cultural benefits, work-from-home allowances, and mobility benefits.
+  Current:    RENTAL_INCOME
+  Suggested:  WAGE
+  Confidence: HIGH
+  Reasoning:  May is an employee benefits platform that provides tax-exempt workplace advantages through a digital wallet system. The incoming transfer of 300 euros represents employee benefits/compensation from an employer using May's platform, which should be categorized as WAGE rather than RENTAL_INCOME. This is employment-related income, not rental income from property.
+
+  labelRoot:  FACTURE CARTE VEJA FRA
+  Entity:     Veja is a French sneaker/footwear brand that sells sustainable shoes and accessories
+  Current:    OTHER_EXPENSE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at Veja, which is a clothing/footwear retailer. Purchases of shoes, clothing, and accessories should be categorized as SHOPPING rather than OTHER_EXPENSE.
+
+  labelRoot:  FACTURE CARTE SQ RUINE FRA
+  Entity:     Based on the label 'SQ RUINE FRA', this appears to be a French card transaction, but the entity is unclear from the abbreviated label. 'RUINE' could refer to historical ruins/monuments or potentially a restaurant/establishment name.
+  Current:    LEISURE
+  Suggested:  SHOPPING
+  Confidence: LOW
+  Reasoning:  The label is too abbreviated and unclear to definitively identify the entity type. However, given it's a CARD transaction with a small amount (-10€), and without clear indicators it's leisure activity, restaurant, or specific service, SHOPPING is the most appropriate default category for unidentified card transactions. LEISURE should be reserved for clearly identifiable leisure activities.
+
+  labelRoot:  FACTURE CARTE PARIS
+  Entity:     FACTURE CARTE PARIS appears to be a generic card transaction label from Paris, likely indicating a payment made with a card in Paris but without specific merchant identification
+  Current:    GROCERY
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  FACTURE CARTE PARIS is too generic to determine the specific merchant or service. Without knowing what was actually purchased, GROCERY is not justified. Since this is an outgoing card transaction with no clear merchant identification, OTHER_EXPENSE is more appropriate as a catch-all category for unidentified expenses.
+
+  labelRoot:  FACTURE CARTE PISCINE VALEYRE PARIS
+  Entity:     This appears to be a card payment for a swimming pool facility in Paris (Piscine Valeyre Paris), likely for pool access fees or swimming activities
+  Current:    SHOPPING
+  Suggested:  SPORT
+  Confidence: HIGH
+  Reasoning:  Swimming pool access fees are clearly sports/fitness related activities. The SPORT category is more appropriate than SHOPPING for recreational swimming facility payments.
+
+  labelRoot:  FACTURE CARTE ROYAL ROCHECHOU PARIS
+  Entity:     ROYAL ROCHECHOUART appears to be a restaurant or café located in Paris, likely in the Rochechouart area (18th arrondissement). Based on the name and location, this is most likely a dining establishment.
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  While restaurants can sometimes be categorized as LEISURE for entertainment dining, the small amount (-9.15) suggests this is likely a quick meal or food purchase rather than leisure dining. According to the taxonomy rules, catering/restaurant companies should be GROCERY or LEISURE depending on context, and the low amount indicates this is more of a basic food expense rather than leisure entertainment.
+
+  labelRoot:  FACTURE CARTE PRETAMANGER FRA
+  Entity:     Pret A Manger is a British sandwich shop chain that sells ready-made sandwiches, salads, sushi, and other prepared foods for quick consumption
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Pret A Manger is primarily a food retailer selling prepared meals, sandwiches, and beverages for consumption. This is food purchasing and should be categorized as GROCERY rather than LEISURE, as it's about buying food items rather than entertainment or recreational activities.
+
+  labelRoot:  FACTURE CARTE DELIVEROO PARIS
+  Entity:     Deliveroo is a food delivery platform that delivers restaurant meals and groceries to customers
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Deliveroo primarily delivers food items including restaurant meals and groceries. Food purchases should be categorized as GROCERY rather than LEISURE, as they represent essential consumption rather than entertainment or recreational activities.
+
+  labelRoot:  FACTURE CARTE RESIDENCE KANN PARIS
+  Entity:     Residence Kann is a coffee shop and café in Paris, France, that serves quality coffee, pastries, vegetarian lunches, empanadas, and light breakfast fare. It is also associated with the KANN design brand and regularly changes its interior scenography.
+  Current:    RENT
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is clearly a coffee shop/café transaction, not rent. The entity serves food and beverages including coffee, pastries, and meals. For a CARD transaction at a food establishment like this, the correct category should be GROCERY according to the taxonomy rules, which specify that card transactions at food service establishments should be categorized as GROCERY rather than SHOPPING.
+
+  labelRoot:  FACTURE CARTE SLBC PARIS
+  Entity:     SLBC appears to be a parking meter or municipal parking service in Paris, likely related to street parking payments
+  Current:    LEISURE
+  Suggested:  TRANSPORT
+  Confidence: HIGH
+  Reasoning:  Parking fees are transportation-related expenses, not leisure activities. Municipal parking services should be categorized under TRANSPORT as they are part of transportation costs when using a vehicle in the city.
+
+  labelRoot:  GENERALI VIE SA ECH ID EMETTEUR MDT REF LIB CONTRAT
+  Entity:     Generali Vie SA is a major French life insurance company, part of the Generali Group, that provides life insurance products, savings plans, and retirement solutions
+  Current:    SHARE_SAVING
+  Suggested:  INSURANCE
+  Confidence: HIGH
+  Reasoning:  Generali Vie is clearly a life insurance company. The outgoing direct debit payment of 150 euros represents an insurance premium payment, which should be categorized as INSURANCE, not SHARE_SAVING. While life insurance can have savings components, the primary service being paid for is insurance coverage.
+
+  labelRoot:  FACTURE CARTE VIC CO PARIS
+  Entity:     VIC CO PARIS appears to be a retail store or shop in Paris, likely selling clothing, accessories, or general merchandise
+  Current:    LEISURE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at what appears to be a retail store (VIC CO) in Paris. Card transactions at retail stores should be categorized as SHOPPING rather than LEISURE. LEISURE is more appropriate for entertainment, dining out, or recreational activities, while SHOPPING covers retail purchases of goods.
+
+  labelRoot:  FACTURE CARTE IVS FRANCE CORMEILLES
+  Entity:     IVS France appears to be a vending machine operator that provides automated retail services, commonly found in offices, hospitals, schools, and public spaces selling snacks, drinks, and small items
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  While vending machines could be considered leisure in some contexts, the small amount (-6 euros) and the nature of vending machine purchases (typically food, drinks, snacks) makes GROCERY the more appropriate category. Vending machine purchases are generally for consumable goods rather than entertainment or leisure activities.
+
+  labelRoot:  FACTURE CARTE SC DISTRICUSTIN PARIS
+  Entity:     SC DISTRICUSTIN appears to be a convenience store or small retail shop in Paris, likely selling various everyday items including tobacco products
+  Current:    TOBACCO
+  Suggested:  SHOPPING
+  Confidence: MEDIUM
+  Reasoning:  While this establishment may sell tobacco products, it appears to be a general convenience store or small retail shop (DISTRICUSTIN suggests distribution/retail). The small amount (-2.99€) could be for various items. Without clear evidence this is exclusively a tobacco purchase, SHOPPING is more appropriate for general retail establishments.
+
+  labelRoot:  FACTURE CARTE GRAND COMPTOIR
+  Entity:     GRAND COMPTOIR appears to be a restaurant or brasserie chain in France, known for serving traditional French cuisine and meals
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  While GRAND COMPTOIR is a restaurant which could be considered leisure dining, the transaction is a CARD payment for food/meal services. According to the rules, catering/restaurant companies should be GROCERY rather than LEISURE, as they provide food services which are more aligned with basic sustenance needs than entertainment activities.
+
+  labelRoot:  FACTURE CARTE SARLU RESTAURAN YGOS ST SATUR
+  Entity:     SARLU RESTAURAN appears to be a restaurant business (SARLU likely stands for Société à Responsabilité Limitée Unipersonnelle, a French business structure). This is a restaurant transaction in Ygos Saint Saturin.
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Restaurant transactions should be categorized as GROCERY rather than LEISURE. GROCERY covers food and dining expenses, while LEISURE is more for entertainment activities. A restaurant meal is primarily a food/dining expense.
+
+  labelRoot:  FACTURE CARTE JOSMAR VENDING ESP
+  Entity:     JOSMAR VENDING appears to be a vending machine operator in Spain (ESP). Vending machines typically sell snacks, drinks, and small food items.
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A vending machine purchase of food/drinks should be categorized as GROCERY rather than OTHER_EXPENSE, as it represents the purchase of consumable goods similar to grocery shopping, just from an automated vendor.
+
+  labelRoot:  FACTURE CARTE COMPANIA DEL TR ESP
+  Entity:     Spanish transport/transit company - likely public transportation, metro, or bus services based on the 'COMPANIA DEL TR' (transport company) designation
+  Current:    LEISURE
+  Suggested:  TRANSPORT
+  Confidence: HIGH
+  Reasoning:  This is clearly a transport company in Spain ('COMPANIA DEL TR' = transport company). Transportation services should be categorized as TRANSPORT, not LEISURE. This appears to be payment for public transit services.
+
+  labelRoot:  FACTURE CARTE MS THESOCIALHU ESP
+  Entity:     THESOCIALHU appears to be The Social Hub, a hospitality company that operates hybrid hotel/hostel accommodations with co-working spaces, primarily in European cities including Spain (ESP indicates Spanish location)
+  Current:    SHOPPING
+  Suggested:  LEISURE
+  Confidence: HIGH
+  Reasoning:  The Social Hub is a hospitality/accommodation service, not a shopping platform. Accommodation and travel-related expenses should be categorized as LEISURE rather than SHOPPING, as they represent leisure/travel activities rather than purchase of goods
+
+  labelRoot:  FACTURE CARTE SOCIAL HUB SAN ESP
+  Entity:     This appears to be a card transaction at a social hub or community center in Spain, possibly for social services, coworking space, or community activities
+  Current:    LEISURE
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  While 'SOCIAL HUB' could potentially be leisure-related, the term suggests more of a social services facility or coworking/community space rather than traditional leisure activities. Since this doesn't clearly fit into standard expense categories like GROCERY, SHOPPING, or typical LEISURE activities, and given the social service nature implied by the name, OTHER_EXPENSE is more appropriate.
+
+  labelRoot:  FACTURE CARTE TODO SUPER ESP
+  Entity:     TODO SUPER ESP appears to be a supermarket or grocery store chain, likely Spanish-owned based on the 'ESP' suffix, selling food and household items
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at a supermarket for groceries and household necessities. According to the rules, card transactions at grocery stores should be categorized as GROCERY, not SHOPPING or LEISURE. The small amount (-6.23) is typical for grocery purchases.
+
+  labelRoot:  FACTURE CARTE GANBARA ESP
+  Entity:     Ganbara appears to be a restaurant or bar, likely Spanish cuisine based on the 'ESP' indicator and Basque/Spanish naming convention
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at what appears to be a restaurant/bar. Restaurant and food service establishments should be categorized as GROCERY according to the taxonomy, not OTHER_EXPENSE. The amount and transaction type are consistent with a restaurant meal.
+
+  labelRoot:  FACTURE CARTE QOBUZ FRA
+  Entity:     Qobuz is a French music streaming service that offers high-quality audio streaming and digital music downloads
+  Current:    OTHER_EXPENSE
+  Suggested:  MULTIMEDIA
+  Confidence: HIGH
+  Reasoning:  Qobuz is a digital music streaming platform, which clearly falls under multimedia services. The MULTIMEDIA category is specifically designed for entertainment and media subscription services like music streaming platforms.
+
+  labelRoot:  FACTURE CARTE WM AMELOT PARIS
+  Entity:     WM AMELOT appears to be a restaurant or food establishment in Paris, likely offering meals or catering services
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  This appears to be a card payment at a food establishment. While restaurants can sometimes be categorized as LEISURE, food purchases are more appropriately categorized as GROCERY, especially for regular meal purchases rather than entertainment dining experiences.
+
+  labelRoot:  FACTURE CARTE SAS BAB PARIS
+  Entity:     SAS BAB PARIS appears to be a restaurant or food establishment in Paris, likely a casual dining or fast-casual restaurant chain
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  While restaurants can be categorized as LEISURE, the small amount (-4 euros) and CARD transaction type suggests this is more likely a quick food purchase rather than a leisure dining experience. Food purchases, especially small amounts at restaurants, are typically categorized as GROCERY in the taxonomy.
+
+  labelRoot:  FACTURE CARTE DIWAN TRAITEUR PARIS
+  Entity:     DIWAN TRAITEUR appears to be a catering/restaurant business in Paris that provides prepared food services
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  DIWAN TRAITEUR is a catering company that provides prepared food. Card transactions at food establishments should be categorized as GROCERY rather than SHOPPING, as this represents food consumption rather than general retail shopping.
+
+  labelRoot:  FACTURE CARTE COMPTOIR DUHESM VINCENNES
+  Entity:     COMPTOIR DUHESM appears to be a bakery/pastry shop (comptoir typically refers to a counter/shop in French, and Duhesme is likely a bakery chain name). This is a food establishment selling baked goods, pastries, and likely light meals.
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A bakery/pastry shop selling food items should be categorized as GROCERY rather than LEISURE. The small amount (-1.75) is consistent with purchasing baked goods or pastries, which are food purchases that fall under grocery expenses, not leisure activities.
+
+  labelRoot:  FACTURE CARTE BIOTECH USA PARIS
+  Entity:     BIOTECH USA is a sports nutrition and supplement company that sells protein powders, vitamins, and other fitness/bodybuilding supplements
+  Current:    OTHER_EXPENSE
+  Suggested:  HEALTH
+  Confidence: HIGH
+  Reasoning:  BIOTECH USA is a well-known sports nutrition brand selling health supplements, protein powders, and vitamins. These products are health-related purchases that should be categorized under HEALTH rather than OTHER_EXPENSE, as they are specifically for maintaining physical health and fitness.
+
+  labelRoot:  FACTURE CARTE FG HALLES PARIS
+  Entity:     FG HALLES appears to be a food court or restaurant establishment in Les Halles, Paris - likely a quick service restaurant or food vendor in the shopping center
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  This appears to be a food purchase at Les Halles in Paris. Food purchases, especially quick meals or food court items, should be categorized as GROCERY rather than SHOPPING. The small amount (-13.15) is typical of a meal purchase.
+
+  labelRoot:  FACTURE CARTE COLUMBUS GARE D PARIS
+  Entity:     Columbus Café is a French coffee shop chain that serves coffee, pastries, sandwiches, and light meals, typically located in high-traffic areas like train stations
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Columbus Café is primarily a food and beverage establishment serving coffee, pastries, and light meals. Food and drink purchases should be categorized as GROCERY rather than LEISURE, as they represent basic consumption rather than entertainment or recreational activities.
+
+  labelRoot:  FACTURE CARTE RELAY PARIS
+  Entity:     Relay is a convenience store chain commonly found in train stations, airports, and urban locations in France, selling newspapers, magazines, snacks, drinks, and travel essentials
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Relay stores primarily sell food items, beverages, and convenience products. A small purchase amount of 1.7 euros at Relay Paris is typical for snacks, drinks, or newspapers. Since this is a CARD transaction at a convenience store selling consumables, it should be categorized as GROCERY rather than OTHER_EXPENSE.
+
+  labelRoot:  FACTURE CARTE KUMA CADET
+  Entity:     KUMA CADET appears to be a restaurant or catering establishment, likely Japanese cuisine based on the name 'KUMA' (bear in Japanese)
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  This is a card payment at what appears to be a restaurant/food establishment. Restaurant purchases should typically be categorized as GROCERY rather than LEISURE, as they represent food consumption which is a basic necessity expense category in the taxonomy.
+
+  labelRoot:  FACTURE CARTE DELIVEROO FRA
+  Entity:     Deliveroo is a food delivery platform that delivers meals from restaurants to customers
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Deliveroo is primarily a food delivery service. While it could be considered leisure, food purchases (including delivered meals) are more appropriately categorized as GROCERY according to the taxonomy, as they represent essential food consumption rather than entertainment or leisure activities
+
+  labelRoot:  FACTURE CARTE DUVALEIX FRA
+  Entity:     DUVALEIX appears to be a French business, likely a local shop, restaurant, or service provider. Without more specific context, it's difficult to determine the exact nature of this establishment.
+  Current:    OTHER_EXPENSE
+  Suggested:  SHOPPING
+  Confidence: MEDIUM
+  Reasoning:  Since this is a CARD transaction at a French establishment and the current category is OTHER_EXPENSE, it should be recategorized as SHOPPING. Card transactions at commercial establishments are typically retail purchases rather than other expenses. Without more specific information about DUVALEIX's business type, SHOPPING is the most appropriate general category for card-based commercial transactions.
+
+  labelRoot:  FACTURE CARTE DOSE JULES JOFF FRA
+  Entity:     DOSE appears to be a French coffee shop/café chain, likely located on Jules Joffrin street in France
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at a coffee shop/café for food and beverages. According to the rules, purchases at food establishments should be categorized as GROCERY rather than SHOPPING, as SHOPPING is more appropriate for retail goods and online platforms.
+
+  labelRoot:  FACTURE CARTE NLD
+  Entity:     This appears to be a card transaction in the Netherlands (NLD = Netherlands), but the generic label 'FACTURE CARTE NLD' (Card Invoice Netherlands) doesn't provide enough information to identify the specific merchant or service type
+  Current:    SHOPPING
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The label is too generic to determine the actual nature of the purchase. 'FACTURE CARTE NLD' only indicates it's a card transaction in the Netherlands but doesn't specify what was purchased. Without knowing the merchant type, SHOPPING is too specific an assumption. OTHER_EXPENSE is more appropriate for unidentifiable expense transactions.
+
+  labelRoot:  FACTURE CARTE SJIEK NLD
+  Entity:     SJIEK appears to be a Dutch (NLD = Netherlands) service or platform, but the specific nature of this entity is not clearly identifiable from the labelRoot alone
+  Current:    MULTIMEDIA
+  Suggested:  SHOPPING
+  Confidence: MEDIUM
+  Reasoning:  Without clear identification of what SJIEK specifically offers, and given it's a card transaction from the Netherlands, SHOPPING is more appropriate than MULTIMEDIA. MULTIMEDIA should be reserved for clearly identified media/entertainment services, streaming platforms, or digital content purchases. The generic nature of this transaction makes SHOPPING the safer categorization.
+
+  labelRoot:  FACTURE CARTE MCDONALD S ND NLD
+  Entity:     McDonald's is a fast food restaurant chain that serves burgers, fries, and other quick meals
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  McDonald's is a food establishment that serves meals for consumption. According to the rules, catering/restaurant companies should be categorized as GROCERY rather than LEISURE, as this represents food purchases rather than entertainment activities
+
+  labelRoot:  FACTURE CARTE NICMAR NLD
+  Entity:     NICMAR appears to be a Dutch (NLD = Netherlands) card transaction, but the specific entity is unclear from the label. Could be related to maritime services, logistics, or another business sector.
+  Current:    MULTIMEDIA
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The current MULTIMEDIA category doesn't seem appropriate as there's no clear indication this is a multimedia service. Without clear context about what NICMAR specifically provides, OTHER_EXPENSE is the most appropriate fallback category for this unidentifiable expense transaction.
+
+  labelRoot:  FACTURE CARTE CAFE EBELING NLD
+  Entity:     Cafe Ebeling appears to be a cafe or coffee shop in the Netherlands (NLD), likely serving coffee, beverages, and possibly light food items
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  While cafes can be considered leisure, a card transaction at a cafe for food/beverages should typically be categorized as GROCERY rather than LEISURE, as it represents food and drink purchases which are more aligned with grocery/sustenance spending
+
+  labelRoot:  FACTURE CARTE DIRK VDBROEK FI NLD
+  Entity:     DIRK is a major Dutch supermarket chain owned by Detailresult Groep, operating discount grocery stores throughout the Netherlands
+  Current:    MULTIMEDIA
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  DIRK is clearly a grocery store/supermarket chain in the Netherlands. A card transaction at a grocery store should be categorized as GROCERY, not MULTIMEDIA. This is a clear miscategorization of a food shopping expense.
+
+  labelRoot:  FACTURE CARTE CCV ALBERTO POZ NLD
+  Entity:     This appears to be a card payment in the Netherlands (NLD) to someone named Alberto Poz, but without clear context of what goods or services were purchased
+  Current:    MULTIMEDIA
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The label 'ALBERTO POZ' appears to be a person's name rather than a recognizable business entity. Without clear indication of multimedia services (streaming, digital content, etc.), and given this is a generic card payment to what seems like an individual, OTHER_EXPENSE is more appropriate than assuming MULTIMEDIA
+
+  labelRoot:  FACTURE CARTE ALBERT HEIJN NLD
+  Entity:     Albert Heijn is a major Dutch supermarket chain, one of the largest grocery retailers in the Netherlands
+  Current:    MULTIMEDIA
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Albert Heijn is clearly a grocery store/supermarket chain. A card transaction at a grocery store should be categorized as GROCERY, not MULTIMEDIA. The current categorization is completely incorrect for this type of retailer.
+
+  labelRoot:  FACTURE CARTE NYX VENDINGLAND NLD
+  Entity:     NYX VENDINGLAND appears to be a vending machine operator from the Netherlands (NLD), likely providing snacks, drinks, or other consumable items through automated vending machines
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Vending machines typically sell food items, snacks, and beverages which are consumable goods that should be categorized as GROCERY rather than SHOPPING. SHOPPING is more appropriate for retail purchases of non-consumable goods, while vending machine purchases of food/drinks align with the GROCERY category.
+
+  labelRoot:  FACTURE CARTE Q GLOBAL KITCH NLD
+  Entity:     Global Kitchen NLD appears to be a restaurant or food service establishment in the Netherlands, likely offering global cuisine or international food
+  Current:    TRANSPORT
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a CARD transaction at what appears to be a restaurant or food establishment (Global Kitchen). Food purchases should be categorized as GROCERY, not TRANSPORT. The small amount (-3.5) and 'kitchen' in the name strongly suggests this is a food-related purchase.
+
+  labelRoot:  FACTURE CARTE NLD
+  Entity:     This appears to be a generic card transaction in the Netherlands (NLD). 'FACTURE CARTE' means 'card bill/invoice' in French, but without more specific merchant information, it's difficult to determine the exact nature of the purchase.
+  Current:    MULTIMEDIA
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The label 'FACTURE CARTE NLD' is too generic to specifically categorize as MULTIMEDIA. Without knowing the actual merchant or service provider, this should be classified as OTHER_EXPENSE since we cannot determine if it's truly multimedia-related content or services.
+
+  labelRoot:  FACTURE CARTE PAPILLON NLD
+  Entity:     FACTURE CARTE PAPILLON NLD appears to be a card transaction, likely related to a loyalty/discount card or shopping service in the Netherlands (NLD). Without more specific information, this could be a retail transaction or service fee.
+  Current:    LEISURE
+  Suggested:  SHOPPING
+  Confidence: MEDIUM
+  Reasoning:  The term 'FACTURE CARTE' (card invoice/bill) suggests this is likely a retail transaction or card-related purchase rather than leisure activity. Given it's a CARD transaction type and the small amount (-7), this appears more consistent with general shopping/retail spending than leisure activities.
+
+  labelRoot:  FACTURE CARTE SELECTA SAS FRA
+  Entity:     Selecta SAS is a European vending machine operator that provides snack and beverage vending machines in offices, schools, hospitals, and other locations
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at a Selecta vending machine for a small amount (-3.6), which typically indicates purchase of snacks, drinks, or food items. Such purchases from vending machines should be categorized as GROCERY rather than SHOPPING, as they involve consumable food/beverage items rather than general merchandise shopping.
+
+  labelRoot:  FACTURE CARTE PRET A MANGER FRA
+  Entity:     Pret A Manger is a UK-based international sandwich shop chain that serves fresh sandwiches, salads, wraps, and other ready-to-eat food items
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Pret A Manger is a food retailer selling ready-to-eat meals and snacks. According to the rules, card transactions at food establishments should be categorized as GROCERY rather than LEISURE, as this represents essential food purchases rather than entertainment or leisure activities
+
+  labelRoot:  FACTURE CARTE BCK KIOSK ASD NLD
+  Entity:     KIOSK ASD appears to be a kiosk or convenience store in the Netherlands (NLD), likely selling newspapers, magazines, snacks, drinks, and other small convenience items
+  Current:    MULTIMEDIA
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A kiosk is typically a convenience store selling everyday items like food, drinks, newspapers, and small goods. The small amount (-2.95) is consistent with a convenience store purchase rather than multimedia content. GROCERY is more appropriate than MULTIMEDIA for kiosk purchases.
+
+  labelRoot:  FACTURE CARTE BIOBURGER VICTO FRA
+  Entity:     Bioburger is a French organic burger restaurant chain that serves organic, locally-sourced fast food
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at Bioburger, which is a restaurant/food establishment. Food purchases should be categorized as GROCERY rather than OTHER_EXPENSE, as GROCERY covers food and dining expenses including restaurants.
+
+  labelRoot:  FACTURE CARTE COMPTOIR DUHESM FRA
+  Entity:     COMPTOIR DUHESM appears to be a French retail counter/shop, likely selling food items, beverages, or small goods based on the 'comptoir' (counter) designation
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  A 'comptoir' in French typically refers to a counter/shop that sells food, beverages, or daily necessities. The small amount (-3.15) and CARD transaction type suggests a quick purchase of consumables rather than leisure activities. This should be categorized as GROCERY rather than LEISURE.
+
+  labelRoot:  FACTURE CARTE MC DONALD CADE FRA
+  Entity:     McDonald's is a fast food restaurant chain serving hamburgers, fries, and other quick meals
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  McDonald's is a fast food restaurant providing meals/food. According to the rules, catering/restaurant companies should be GROCERY or LEISURE depending on context. For fast food purchases, GROCERY is more appropriate as it represents food consumption rather than entertainment/leisure activities.
+
+  labelRoot:  FACTURE CARTE LESPACE FRA
+  Entity:     Leclerc E.Space is a multimedia/electronics retail section of the French Leclerc supermarket chain, specializing in electronics, computers, phones, games, and entertainment products
+  Current:    OTHER_EXPENSE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  Leclerc E.Space is a retail electronics and multimedia store selling consumer goods like electronics, games, and entertainment products. This is clearly a shopping transaction at a retail store, not a generic expense, so it should be categorized as SHOPPING.
+
+  labelRoot:  FACTURE CARTE MONGOO VICTOIRE FRA
+  Entity:     MONGOO is a fast food restaurant chain in France specializing in custom-made salads. The company operates multiple locations in Paris and offers fresh salads made to order with a variety of ingredients prepared daily on-site.
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  MONGOO is a restaurant/fast food establishment, not a retail shopping platform. Since this is a CARD transaction for food purchase at a restaurant, it should be categorized as GROCERY rather than SHOPPING. According to the taxonomy rules, card transactions at food establishments should be GROCERY, while SHOPPING is reserved for retail purchases and online shopping platforms.
+
+  labelRoot:  FACTURE CARTE IMAGERIE MEDICA FRA
+  Entity:     Medical imaging facility providing diagnostic imaging services like X-rays, MRIs, CT scans, ultrasounds, etc.
+  Current:    OTHER_EXPENSE
+  Suggested:  HEALTH
+  Confidence: HIGH
+  Reasoning:  IMAGERIE MEDICA clearly indicates a medical imaging facility. Medical imaging services are healthcare expenses and should be categorized as HEALTH rather than OTHER_EXPENSE.
+
+  labelRoot:  FACTURE CARTE DENGO ABBESSES FRA
+  Entity:     DENGO appears to be a chocolate/confectionery shop or café, likely located in the Abbesses area of Paris (Montmartre district)
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  This appears to be a card payment at a chocolate/confectionery shop. Food and confectionery purchases should be categorized as GROCERY rather than OTHER_EXPENSE, as they represent food/consumable goods purchases.
+
+  labelRoot:  FACTURE CARTE FRANCK PROVOST FRA
+  Entity:     Franck Provost is a French hairdressing salon chain offering hair styling, cutting, and beauty services
+  Current:    LEISURE
+  Suggested:  HEALTH
+  Confidence: HIGH
+  Reasoning:  Franck Provost is a hairdressing salon chain. Personal care services like haircuts and styling are typically classified under HEALTH rather than LEISURE, as they are considered personal hygiene and grooming services rather than entertainment activities
+
+  labelRoot:  FACTURE CARTE ANAEVI FRA
+  Entity:     ANAEVI appears to be a French healthcare or medical service provider, likely related to medical consultations, healthcare services, or medical equipment
+  Current:    OTHER_EXPENSE
+  Suggested:  HEALTH
+  Confidence: MEDIUM
+  Reasoning:  ANAEVI is likely a healthcare-related entity in France. Card transactions for medical services, consultations, or health-related expenses should be categorized as HEALTH rather than OTHER_EXPENSE, as the taxonomy has a specific category for health expenditures
+
+  labelRoot:  FACTURE CARTE DELISH FRA
+  Entity:     DELISH appears to be a food delivery or restaurant service, likely offering meals or food products
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at what appears to be a food-related business (DELISH). For food purchases via card transactions, the appropriate category should be GROCERY rather than OTHER_EXPENSE, as it represents food consumption.
+
+  labelRoot:  FACTURE CARTE LAPOSTE FRA
+  Entity:     La Poste is the French postal service that provides mail delivery, postal services, banking services, and also operates retail locations selling postal supplies, stationery, and various products
+  Current:    LEISURE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  La Poste retail locations sell various products like stamps, envelopes, stationery, small gifts, and other merchandise. A card transaction at La Poste is typically for purchasing these retail items, which falls under SHOPPING rather than LEISURE. LEISURE would be more appropriate for entertainment or recreational activities.
+
+  labelRoot:  FACTURE CARTE L ATELIER G FRA
+  Entity:     L'Atelier G appears to be a French restaurant, café, or food establishment based on the name pattern and card transaction context
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  While restaurants can be categorized as LEISURE for dining out experiences, the small amount (-4.9) suggests this is more likely a quick food purchase, café visit, or takeaway meal, which should be categorized as GROCERY according to the taxonomy for food-related expenses
+
+  labelRoot:  FACTURE CARTE CLOYS FRA
+  Entity:     CLOYS appears to be a French retail chain, likely a clothing or general merchandise store
+  Current:    GROCERY
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  CLOYS is not a grocery store but rather a retail chain selling clothing and general merchandise. Card transactions at retail stores for non-food items should be categorized as SHOPPING, not GROCERY. The amount of -78.26 is also consistent with clothing/retail purchases rather than grocery shopping.
+
+  labelRoot:  FACTURE CARTE POSTE FRA
+  Entity:     La Poste is the French national postal service that operates post offices throughout France, providing postal services, package delivery, and various administrative services
+  Current:    SHOPPING
+  Suggested:  OTHER_EXPENSE
+  Confidence: HIGH
+  Reasoning:  This is a postal service transaction at La Poste for a small amount (-1.59), likely for sending mail or a package. Postal services don't fit well into SHOPPING (which is for retail purchases) and there's no specific postal/shipping category in the taxonomy, so OTHER_EXPENSE is the most appropriate catch-all category for this type of service expense.
+
+  labelRoot:  FACTURE CARTE NET IMPRESSI FRA
+  Entity:     This appears to be a card payment for printing services, likely at a print shop or for online printing services based on 'NET IMPRESSI' (network printing/impression)
+  Current:    OTHER_EXPENSE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  This is a card transaction for printing services, which falls under commercial services/products. Print shops and printing services should be categorized as SHOPPING rather than OTHER_EXPENSE, as it's a purchase of goods/services from a commercial provider.
+
+  labelRoot:  MOTIF PIERRE BEN MLE THABOURIN MARION REFDO REFBEN
+  Entity:     This appears to be a personal transfer to an individual named Pierre Ben, possibly related to someone named Marion Thabourin, with reference codes (REFDO REFBEN). This looks like a personal money transfer between individuals.
+  Current:    OTHER_EXPENSE
+  Suggested:  DISSAVING
+  Confidence: MEDIUM
+  Reasoning:  This is an outgoing transfer to what appears to be an individual person rather than a business or service provider. Personal transfers between individuals should be categorized as DISSAVING rather than OTHER_EXPENSE, as it represents moving money from one's account to another person's account rather than purchasing goods or services.
+
+  labelRoot:  FACTURE CARTE SUNDAY DOSE JUL FRA
+  Entity:     Sunday Dose is likely a wellness/supplement company or health-focused brand that sells nutritional supplements, vitamins, or health products
+  Current:    LEISURE
+  Suggested:  HEALTH
+  Confidence: HIGH
+  Reasoning:  Sunday Dose appears to be a health/wellness company selling supplements or health products. The current LEISURE category is incorrect as this is clearly a health-related purchase, not leisure activity. HEALTH is the appropriate category for medical/wellness products and supplements.
+
+  labelRoot:  FACTURE CARTE FRA
+  Entity:     This appears to be a generic card transaction in France ('FACTURE CARTE FRA' means 'Card Bill France'), which is too generic to determine the specific merchant or service
+  Current:    GROCERY
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The labelRoot 'FACTURE CARTE FRA' is too generic to determine what was actually purchased. Without knowing the specific merchant, assigning GROCERY is inappropriate. OTHER_EXPENSE is more suitable for unidentifiable card transactions where the merchant/service type cannot be determined.
+
+  labelRoot:  FACTURE CARTE CAFE DANS FRA
+  Entity:     Coffee purchase at a cafe in France - this is a food/beverage transaction at a coffee shop or cafe
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A coffee purchase at a cafe should be categorized as GROCERY since it's a food/beverage expense. While cafes can be considered leisure venues, the primary transaction here is purchasing consumables (coffee/food), which falls under GROCERY category rather than LEISURE activities.
+
+  labelRoot:  FACTURE CARTE KEYNEST GBR
+  Entity:     Keynest is a key exchange service that provides secure key storage and collection points, commonly used for Airbnb rentals, property management, and short-term accommodations
+  Current:    SHOPPING
+  Suggested:  OTHER_EXPENSE
+  Confidence: HIGH
+  Reasoning:  Keynest is a key exchange/storage service, not a shopping platform. This is a service fee for key management rather than a purchase of goods, so it doesn't fit the SHOPPING category which is for retail purchases. OTHER_EXPENSE is the most appropriate category for this type of service fee.
+
+  labelRoot:  FACTURE CARTE MOMENTUM SERVIC GBR
+  Entity:     Momentum Services appears to be a UK-based service company (GBR indicates Great Britain), likely providing digital or business services
+  Current:    SHOPPING
+  Suggested:  OTHER_EXPENSE
+  Confidence: MEDIUM
+  Reasoning:  The term 'SERVIC' in the label suggests this is a service-based transaction rather than shopping for goods. Without knowing the exact nature of Momentum Services, and given the small amount (3.7), this appears to be a service fee or subscription rather than shopping. OTHER_EXPENSE is more appropriate for miscellaneous service fees that don't fit other specific categories.
+
+  labelRoot:  FACTURE CARTE SAINT J FRA
+  Entity:     This appears to be a card transaction at a French location (Saint J FRA suggests a French merchant), but without more specific context about what 'SAINT J' represents, it's difficult to determine the exact nature of the business
+  Current:    TRANSPORT
+  Suggested:  OTHER_EXPENSE
+  Confidence: LOW
+  Reasoning:  The label 'FACTURE CARTE SAINT J FRA' is too generic to definitively determine the merchant type. While it could potentially be transport-related, there's insufficient information to confirm this. Without clear indicators that this is a transport service (like toll roads, gas stations, or transit operators), the safer categorization would be OTHER_EXPENSE until more specific merchant information is available.
+
+  labelRoot:  FACTURE CARTE UKVI GBR
+  Entity:     UKVI (UK Visas and Immigration) is the UK government department responsible for visa applications and immigration services. This appears to be a visa application fee or immigration service payment.
+  Current:    SHOPPING
+  Suggested:  OTHER_EXPENSE
+  Confidence: HIGH
+  Reasoning:  UKVI is a UK government immigration service, not a retail shopping entity. Visa and immigration fees are administrative/government services that don't fit standard expense categories like shopping, so OTHER_EXPENSE is most appropriate for this type of official government service payment.
+
+  labelRoot:  FACTURE CARTE RELAY FRA
+  Entity:     Relay is a French convenience store chain found in train stations, airports, and urban locations, selling newspapers, magazines, snacks, drinks, and travel essentials
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  Relay stores primarily sell food items (snacks, drinks, sandwiches) and convenience products. A card transaction at Relay for 7.6 euros is most likely for food/beverage purchases, which should be categorized as GROCERY rather than OTHER_EXPENSE
+
+  labelRoot:  FACTURE CARTE IVS FRANCE FRA
+  Entity:     IVS France appears to be related to vending machine services or automated retail systems, likely for snacks, drinks, or other convenience items
+  Current:    LEISURE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  IVS France is likely a vending machine operator providing food and beverage items. A small 5€ card transaction suggests purchasing snacks or drinks from a vending machine, which should be categorized as GROCERY rather than LEISURE since it's for consumable goods rather than entertainment
+
+  labelRoot:  FACTURE CARTE MARCADIS FRA
+  Entity:     Marcadis is a French company that operates commercial galleries and shopping centers, likely a payment at one of their retail locations or shopping centers
+  Current:    OTHER_EXPENSE
+  Suggested:  SHOPPING
+  Confidence: HIGH
+  Reasoning:  This is a card transaction at a Marcadis location, which operates shopping centers and commercial galleries. Card transactions at retail/shopping locations should be categorized as SHOPPING rather than OTHER_EXPENSE, as the customer is purchasing goods or services from retailers within their commercial spaces.
+
+  labelRoot:  FACTURE CARTE UBR PENDING UB NLD
+  Entity:     This appears to be a Uber ride transaction in the Netherlands (NLD) that is still pending processing
+  Current:    LEISURE
+  Suggested:  TRANSPORT
+  Confidence: HIGH
+  Reasoning:  UBR (Uber) is a ride-sharing/transportation service. Transport services should be categorized as TRANSPORT, not LEISURE. The transaction is for getting from one place to another, which is a transport expense.
+
+  labelRoot:  FACTURE CARTE MEUNIER NEUILLY FRA
+  Entity:     MEUNIER appears to be a bakery/pastry shop in Neuilly, France - likely selling bread, pastries, and baked goods
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A bakery selling bread and pastries should be categorized as GROCERY rather than SHOPPING, as it involves food purchases for daily consumption rather than general retail shopping
+
+  labelRoot:  FACTURE CARTE RAJESWARY FRA
+  Entity:     RAJESWARY FRA appears to be a French restaurant or food establishment, likely specializing in South Asian/Indian cuisine based on the name
+  Current:    OTHER_EXPENSE
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  This is a CARD transaction at what appears to be a restaurant/food establishment. For dining out at restaurants, the appropriate category should be GROCERY rather than OTHER_EXPENSE, as GROCERY covers food-related expenses including restaurant meals.
+
+  labelRoot:  CARTE DJANGO AUTORISAT CB
+  Entity:     Django is a French fintech company specializing in credit solutions. It is a 100% subsidiary of La Banque Postale Consumer Finance, founded in 2022 and based in Paris. The company positions itself as an engaged actor that aims to transform the credit market through responsible commitments, combining the values of La Banque Postale Group with the agility of a fintech.
+  Current:    SPLIT_PAYMENT
+  Suggested:  LOAN_DRAWDOWN
+  Confidence: HIGH
+  Reasoning:  Django is a credit solutions specialist and subsidiary of La Banque Postale Consumer Finance. A card transaction with Django for -420.28 EUR suggests a credit/loan product usage rather than a split payment service. Given Django's business as a credit solutions provider, this transaction most likely represents a loan drawdown or credit facility usage, making LOAN_DRAWDOWN the most appropriate category.
+
+  labelRoot:  FRAIS BOURSO PROTECT MONO
+  Entity:     BOURSO PROTECT MONO is an insurance product offered by BoursoBank (formerly Boursorama Banque) that provides protection for everyday life including payment methods, personal effects, mobile devices, and identity protection. It's a comprehensive insurance service covering fraud protection, theft/loss coverage, and personal belongings insurance.
+  Current:    FEES_BANK_SERVICE
+  Suggested:  INSURANCE
+  Confidence: HIGH
+  Reasoning:  This is clearly an insurance premium payment, not a bank service fee. BOURSO PROTECT is BoursoBank's insurance product offering comprehensive protection coverage. The transaction represents payment for insurance services, which should be categorized under INSURANCE rather than FEES_BANK_SERVICE.
+
+  labelRoot:  CARTE DISTRIPROT CB
+  Entity:     DISTRIPROT appears to be a distributor or retailer, likely in the food/grocery sector based on the name pattern. The 'CB' indicates a card payment.
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  DISTRIPROT likely refers to a food distributor or grocery retailer. Card transactions at grocery stores should be categorized as GROCERY rather than SHOPPING according to the taxonomy rules. The small amount (-4.9) is also consistent with a grocery purchase.
+
+  labelRoot:  CARTE ANAEVI CB
+  Entity:     ANAEVI appears to be a catering/restaurant service company, likely providing meal services or food-related services
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: MEDIUM
+  Reasoning:  ANAEVI is likely a catering/food service company. Card transactions at food service providers should be categorized as GROCERY rather than SHOPPING, as this represents food purchases which are a basic necessity rather than general retail shopping
+
+  labelRoot:  TDF  VIA CB REVOLUT
+  Entity:     TDF (Télédiffusion de France) is a French company that operates television and radio transmission infrastructure, broadcasting towers, and provides digital transmission services
+  Current:    OTHER_EXPENSE
+  Suggested:  MULTIMEDIA
+  Confidence: HIGH
+  Reasoning:  TDF is a telecommunications/broadcasting service provider that handles TV and radio transmission services. This type of service clearly falls under MULTIMEDIA category rather than OTHER_EXPENSE, as it's related to media/broadcasting services
+
+  labelRoot:  CARTE DUVALEIX CB
+  Entity:     DUVALEIX appears to be a French bakery/pastry shop chain, known for traditional baked goods, bread, and pastries
+  Current:    SHOPPING
+  Suggested:  GROCERY
+  Confidence: HIGH
+  Reasoning:  A bakery/pastry shop should be categorized as GROCERY rather than SHOPPING, as it sells food items (bread, pastries) which are consumable goods typically classified under grocery expenses, not general retail shopping
+
+  labelRoot:  INST RODRIGUES DOS SANTOS LUCAS
+  Entity:     This appears to be an internal transfer to an individual named Lucas Rodrigues dos Santos, likely a personal transfer between accounts or to another person
+  Current:    OTHER_EXPENSE
+  Suggested:  DISSAVING
+  Confidence: MEDIUM
+  Reasoning:  OUTGOING_INTERNAL_TRANSFER transactions to individuals are typically personal transfers or savings movements, not expenses. Since this is moving money internally or to another person, it should be categorized as DISSAVING rather than OTHER_EXPENSE, as it represents a movement of saved funds rather than an actual expense for goods or services.
 
 ======================================================================
