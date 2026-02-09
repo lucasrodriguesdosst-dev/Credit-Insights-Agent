@@ -11,7 +11,7 @@ If a category is incorrect, the agent proposes a more appropriate one.
 import json
 import anthropic
 from categories import format_taxonomy, ALL_CATEGORIES, get_category_group
-from search import search_entity
+from search import extract_entity_query
 
 
 SYSTEM_PROMPT = """You are a cashflow category validation expert. Your job is to determine whether
@@ -62,6 +62,9 @@ def validate_cashflow(client: anthropic.Anthropic, cashflow: dict) -> dict:
     Validate a single cashflow's category by searching for the entity
     and using Claude to assess correctness.
 
+    Uses the Anthropic web search tool so Claude can search the web
+    server-side during the API call (no outbound HTTP from the client).
+
     Args:
         client: Anthropic API client
         cashflow: A cashflow dict with at least labelRoot, category, type
@@ -74,8 +77,8 @@ def validate_cashflow(client: anthropic.Anthropic, cashflow: dict) -> dict:
     cf_type = cashflow.get("type", "")
     total_amount = cashflow.get("totalAmount", 0)
 
-    # Search for the entity online
-    search_results = search_entity(label_root)
+    # Pre-extract a clean query hint for Claude
+    query_hint = extract_entity_query(label_root)
 
     # Build the prompt for Claude
     cashflow_info = (
@@ -84,20 +87,52 @@ def validate_cashflow(client: anthropic.Anthropic, cashflow: dict) -> dict:
         f"  - Current category: {category}\n"
         f"  - Transaction type: {cf_type}\n"
         f"  - Total amount: {total_amount}\n"
-        f"\nWeb search results about this entity:\n{search_results}"
+        f"\nPlease search the web for \"{query_hint}\" to identify what this entity is, "
+        f"then validate whether the current category is correct."
     )
 
     system = SYSTEM_PROMPT.format(taxonomy=format_taxonomy())
+
+    # Use the Anthropic web search tool so the search happens server-side
+    tools = [{
+        "type": "web_search_20250305",
+        "name": "web_search",
+        "max_uses": 1,
+    }]
 
     response = client.messages.create(
         model="claude-sonnet-4-20250514",
         max_tokens=1024,
         system=system,
         messages=[{"role": "user", "content": cashflow_info}],
+        tools=tools,
     )
 
-    # Parse the response
-    response_text = response.content[0].text
+    # Handle pause_turn: continue the conversation if Claude paused
+    messages = [{"role": "user", "content": cashflow_info}]
+    while response.stop_reason == "pause_turn":
+        messages.append({"role": "assistant", "content": response.content})
+        response = client.messages.create(
+            model="claude-sonnet-4-20250514",
+            max_tokens=1024,
+            system=system,
+            messages=messages,
+            tools=tools,
+        )
+
+    # Extract the final text block(s) from the response
+    response_text = ""
+    search_results_summary = ""
+    for block in response.content:
+        if block.type == "text":
+            response_text = block.text
+        elif block.type == "web_search_tool_result":
+            titles = []
+            for item in (block.content if isinstance(block.content, list) else []):
+                if hasattr(item, "title"):
+                    titles.append(item.title)
+            if titles:
+                search_results_summary = "; ".join(titles)
 
     try:
         # Extract JSON from response (handle markdown code blocks)
@@ -121,7 +156,7 @@ def validate_cashflow(client: anthropic.Anthropic, cashflow: dict) -> dict:
     result["labelRoot"] = label_root
     result["type"] = cf_type
     result["totalAmount"] = total_amount
-    result["search_results"] = search_results
+    result["search_results"] = search_results_summary or "Web search via Anthropic API"
 
     return result
 
