@@ -175,7 +175,8 @@ def check_payment_link():
 
     if resp.status_code == 200:
         data = resp.json()
-        payment_link = data.get("paymentProviderLink")
+        invoice_params = data.get("invoiceParameters") or {}
+        payment_link = invoice_params.get("paymentProviderLink")
         if payment_link:
             return jsonify({"status": "ready", "link": payment_link})
         return jsonify({"status": "pending"})
