@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Credit Insights – Connect Your Bank</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', sans-serif; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+    .float { animation: float 3.5s ease-in-out infinite; }
+
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.7; }
+      70% { transform: scale(1.1); opacity: 0; }
+      100% { transform: scale(0.95); opacity: 0; }
+    }
+    .pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-slate-900 via-blue-950 to-indigo-900 flex items-center justify-center p-4">
+
+  <!-- Decorative blobs -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-blue-600 opacity-10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-indigo-600 opacity-10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2 pointer-events-none"></div>
+
+  <!-- Logout link -->
+  <a href="/logout" class="absolute top-6 right-6 text-white/40 hover:text-white/80 text-sm transition">Logout</a>
+
+  <div class="relative w-full max-w-sm text-white text-center">
+
+    <!-- Error banner -->
+    {% if error %}
+    <div class="flex items-center gap-2 bg-red-500/20 border border-red-400/40 text-red-200 rounded-xl px-4 py-3 mb-6 text-sm text-left">
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/>
+      </svg>
+      <span>{{ error }}</span>
+    </div>
+    {% endif %}
+
+    <!-- Floating card illustration -->
+    <div class="relative flex justify-center mb-10">
+      <!-- Pulse rings -->
+      <div class="absolute inset-0 flex items-center justify-center">
+        <div class="w-40 h-40 rounded-full bg-blue-500/20 pulse-ring"></div>
+      </div>
+      <div class="absolute inset-0 flex items-center justify-center" style="animation-delay:0.5s">
+        <div class="w-40 h-40 rounded-full bg-indigo-500/10 pulse-ring"></div>
+      </div>
+
+      <!-- Credit card -->
+      <div class="float relative w-64 h-40 bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 rounded-2xl shadow-2xl shadow-blue-900/60 flex flex-col justify-between p-5 select-none">
+        <!-- Top row -->
+        <div class="flex items-start justify-between">
+          <!-- Chip -->
+          <div class="w-10 h-7 bg-yellow-300/80 rounded-md flex items-center justify-center">
+            <div class="w-6 h-4 border border-yellow-500/50 rounded-sm grid grid-cols-2 gap-px p-0.5">
+              <div class="bg-yellow-400/60 rounded-sm"></div>
+              <div class="bg-yellow-400/60 rounded-sm"></div>
+              <div class="bg-yellow-400/60 rounded-sm"></div>
+              <div class="bg-yellow-400/60 rounded-sm"></div>
+            </div>
+          </div>
+          <!-- Wireless / NFC icon -->
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"/>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"/>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"/>
+            <line x1="12" y1="20" x2="12.01" y2="20"/>
+          </svg>
+        </div>
+
+        <!-- Card number -->
+        <div class="flex gap-3 text-white/80 text-sm font-mono tracking-widest">
+          <span>••••</span><span>••••</span><span>••••</span><span>1234</span>
+        </div>
+
+        <!-- Bottom row -->
+        <div class="flex items-end justify-between">
+          <div>
+            <p class="text-white/50 text-xs uppercase tracking-wider">Card Holder</p>
+            <p class="text-white text-sm font-semibold tracking-wide">Your Account</p>
+          </div>
+          <!-- Mastercard-style circles -->
+          <div class="flex -space-x-3">
+            <div class="w-8 h-8 bg-red-500/80 rounded-full"></div>
+            <div class="w-8 h-8 bg-yellow-400/80 rounded-full"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Headline -->
+    <h1 class="text-3xl font-extrabold mb-3 leading-tight">
+      Connect your<br/>bank account
+    </h1>
+    <p class="text-white/55 text-sm leading-relaxed max-w-xs mx-auto mb-10">
+      We securely link your financial data to provide personalised credit insights in real-time.
+    </p>
+
+    <!-- Feature pills -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10 text-xs">
+      <span class="bg-white/10 border border-white/15 rounded-full px-3 py-1 text-white/70">Bank-grade encryption</span>
+      <span class="bg-white/10 border border-white/15 rounded-full px-3 py-1 text-white/70">Read-only access</span>
+      <span class="bg-white/10 border border-white/15 rounded-full px-3 py-1 text-white/70">No data stored</span>
+    </div>
+
+    <!-- Start button -->
+    <form method="POST" action="/start">
+      <button
+        type="submit"
+        id="startBtn"
+        class="w-full bg-gradient-to-r from-blue-500 to-indigo-500 hover:from-blue-400 hover:to-indigo-400 text-white font-bold text-lg py-4 rounded-2xl shadow-xl shadow-blue-500/30 transition-all duration-200 active:scale-95 flex items-center justify-center gap-2"
+        onclick="this.disabled=true; this.innerHTML='<svg class=\'animate-spin w-5 h-5\' xmlns=\'http://www.w3.org/2000/svg\' fill=\'none\' viewBox=\'0 0 24 24\'><circle class=\'opacity-25\' cx=\'12\' cy=\'12\' r=\'10\' stroke=\'currentColor\' stroke-width=\'4\'></circle><path class=\'opacity-75\' fill=\'currentColor\' d=\'M4 12a8 8 0 018-8v8z\'></path></svg> Starting…'; this.closest('form').submit();"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+        Start
+      </button>
+    </form>
+
+    <p class="text-white/25 text-xs mt-6">Powered by Algoan · Secured with OAuth 2.0</p>
+  </div>
+
+</body>
+</html>
