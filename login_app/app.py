@@ -87,6 +87,8 @@ def login():
         if resp.status_code == 200:
             data = resp.json()
             session["access_token"] = data.get("access_token")
+            session["username"] = username
+            session["password"] = password
             return redirect(url_for("welcome"))
         else:
             return render_template(
@@ -151,8 +153,20 @@ def check_payment_link():
     if "access_token" not in session or "organization_id" not in session:
         return jsonify({"error": "Not authenticated"}), 401
 
-    access_token = session["access_token"]
     org_id = session["organization_id"]
+
+    # Re-fetch a fresh token before calling the organization endpoint to avoid
+    # 403 errors caused by an expired session token.
+    try:
+        token_resp = _get_token(session["username"], session["password"])
+    except requests.RequestException as exc:
+        return jsonify({"error": f"Token refresh failed: {exc}"}), 502
+
+    if token_resp.status_code != 200:
+        return jsonify({"error": "Token refresh failed", "status": token_resp.status_code}), 502
+
+    access_token = token_resp.json().get("access_token")
+    session["access_token"] = access_token
 
     try:
         resp = _get_organization(access_token, org_id)
