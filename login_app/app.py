@@ -184,6 +184,52 @@ def check_payment_link():
     return jsonify({"error": f"API error {resp.status_code}"}), 502
 
 
+@app.route("/stripe-return")
+def stripe_return():
+    """Landing page after the user completes (or cancels) the Stripe flow."""
+    if "access_token" not in session or "organization_id" not in session:
+        return redirect(url_for("login"))
+    return render_template("stripe_return.html")
+
+
+@app.route("/api/check-lago-stripe-state")
+def check_lago_stripe_state():
+    """Polled by the frontend after the Stripe redirect.
+
+    Returns the current lagoStripeLinkState so the frontend can decide
+    when to move on.
+    """
+    if "access_token" not in session or "organization_id" not in session:
+        return jsonify({"error": "Not authenticated"}), 401
+
+    org_id = session["organization_id"]
+
+    try:
+        token_resp = _get_token(session["username"], session["password"])
+    except requests.RequestException as exc:
+        return jsonify({"error": f"Token refresh failed: {exc}"}), 502
+
+    if token_resp.status_code != 200:
+        return jsonify({"error": "Token refresh failed", "status": token_resp.status_code}), 502
+
+    access_token = token_resp.json().get("access_token")
+    session["access_token"] = access_token
+
+    try:
+        resp = _get_organization(access_token, org_id)
+    except requests.RequestException as exc:
+        return jsonify({"error": str(exc)}), 502
+
+    if resp.status_code != 200:
+        return jsonify({"error": f"API error {resp.status_code}"}), 502
+
+    data = resp.json()
+    invoice_params = data.get("invoiceParameters") or {}
+    lago_state = invoice_params.get("lagoStripeLinkState")
+
+    return jsonify({"lagoStripeLinkState": lago_state})
+
+
 @app.route("/logout")
 def logout():
     session.clear()
